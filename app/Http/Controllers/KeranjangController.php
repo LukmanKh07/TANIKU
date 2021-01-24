@@ -24,20 +24,6 @@ class KeranjangController extends Controller
             'products.id_produk as id_produk','products.harga_produk as har')
         ->get();
 
-        // $keranjang = DB::table('carts')
-        // ->join('products','carts.id_produk', '=', 'products.id_produk')
-        // ->join('markets','markets.id_market', '=', 'products.id_market')
-        // ->select('carts.*', 'products.nama_produk as nama', 'products.gambar as gambar',
-        //     'products.id_produk as id_produk','products.harga_produk as har')
-        // ->groupBy('products.id_market')
-        // ->get();
-
-        // $users = DB::table('users')
-        //         ->groupBy('id')
-        //         ->having('id', '>', 100)
-        //         ->get();
-        // dd($keranjang);
-
         $jum = DB::table('carts')
         ->where('id_session', $session_id)->sum('harga');
          // dd($jumlah);
@@ -66,32 +52,6 @@ class KeranjangController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        // $market = DB::table('markets')->where('id_user', Auth::id())->value('id_market');
-        // $request->validate([
-        //     'produk' => 'required',            
-        //     'harga' => 'required',
-        //     'stock' => 'required',
-        //     'gambar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',            
-            
-        // ]);
-
-        // $imageName = time().'.'.$request->gambar->extension();
-
-        
-
-
-        // $product = new Product();
-        //     $product->nama_produk = request('produk');
-        //     $product->harga_produk = request('harga');
-        //     $product->stok = request('stock');
-        //     $product->gambar = $request->gambar->move('public/images', $imageName);
-        //     $product->id_user = Auth::id();
-        //     $product->id_market = $market;
-        //     $product->save();
-
-        // return redirect()->route('market.index');
-
         $harga = DB::table('products')->where('id_produk', request('id'))->value('harga_produk');
 
         $session_id = session()->getId();
@@ -102,9 +62,7 @@ class KeranjangController extends Controller
         $keranjang->harga = $harga;
         $keranjang->jumlah = 1;
         $keranjang->save();
-        return redirect()->route('cart.index');
-        
-
+        return redirect()->route('cart.index');      
     }
 
     /**

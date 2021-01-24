@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use app\Product;
 use DB;
+use Auth;
+
 
 class HomeController extends Controller
 {
@@ -27,6 +29,7 @@ class HomeController extends Controller
     {
 
         $produk = DB::table('products')
+        ->where('id_user','!=',Auth::id())
         ->limit(12)
         ->latest()
         ->get();

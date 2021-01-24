@@ -5,16 +5,16 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Quixlab - Bootstrap Admin Dashboard Template by Themefisher.com</title>
+    <title>TANIKU.COM_ADMIN</title>
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
     <!-- Pignose Calender -->
-    <link href="./plugins/pg-calendar/css/pignose.calendar.min.css" rel="stylesheet">
+    <link href="{{ URL::asset('admin/plugins/pg-calendar/css/pignose.calendar.min.css" rel="stylesheet') }}">
     <!-- Chartist -->
-    <link rel="stylesheet" href="./plugins/chartist/css/chartist.min.css">
-    <link rel="stylesheet" href="./plugins/chartist-plugin-tooltips/css/chartist-plugin-tooltip.css">
+    <link rel="stylesheet" href="{{ URL::asset('admin/plugins/chartist/css/chartist.min.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('admin/plugins/chartist-plugin-tooltips/css/chartist-plugin-tooltip.css') }}">
     <!-- Custom Stylesheet -->
-    <link href="../admin/css/style.css" rel="stylesheet">
+    <link href="{{ URL::asset('admin/css/style.css') }}" rel="stylesheet">
 
 </head>
 
@@ -172,6 +172,13 @@
                         </a>
                        
                     </li>
+
+                    <li class="mega-menu mega-menu-sm">
+                        <a class="" href="{{ route('kategori.index') }}" aria-expanded="false">
+                            <i class="icon-globe-alt menu-icon"></i><span class="nav-text">Kategori</span>
+                        </a>
+                       
+                    </li>
                    
                     <li>
                         <a class="" href="{{ route('admin.produk') }}" aria-expanded="false">
@@ -180,13 +187,13 @@
                        
                     </li>
                     <li>
-                        <a class="h"  aria-expanded="false">
+                        <a class="" href="{{ route('admin.order') }}"  aria-expanded="false">
                             <i class="icon-screen-tablet menu-icon"></i><span class="nav-text">Order</span>
                         </a>
                        
                     </li>
                     <li>
-                        <a class=""  aria-expanded="false">
+                        <a class="" href="{{ route('admin.penjualan') }}" aria-expanded="false">
                             <i class="icon-graph menu-icon"></i> <span class="nav-text">Penjualan</span>
                         </a>
                         
@@ -223,33 +230,33 @@
     <!--**********************************
         Scripts
     ***********************************-->
-    <script src="../admin/plugins/common/common.min.js"></script>
-    <script src="../admin/js/custom.min.js"></script>
-    <script src="../admin/js/settings.js"></script>
-    <script src="../admin/js/gleek.js"></script>
-    <script src="../admin/js/styleSwitcher.js"></script>
+     <script src="{{ URL::asset('admin/plugins/common/common.min.js') }}"></script>
+    <script src="{{ URL::asset('admin/js/custom.min.js') }}"></script>
+    <script src="{{ URL::asset('admin/js/settings.js') }}"></script>
+    <script src="{{ URL::asset('admin/js/gleek.js') }}"></script>
+    <script src="{{ URL::asset('admin/js/styleSwitcher.js') }}"></script>
 
     <!-- Chartjs -->
-    <script src="../admin/plugins/chart.js/Chart.bundle.min.js"></script>
+    <script src="{{ URL::asset('admin/plugins/chart.js/Chart.bundle.min.js') }}"></script>
     <!-- Circle progress -->
-    <script src="../admin/plugins/circle-progress/circle-progress.min.js"></script>
+    <script src="{{ URL::asset('admin/plugins/circle-progress/circle-progress.min.js') }}"></script>
     <!-- Datamap -->
-    <script src="../admin/plugins/d3v3/index.js"></script>
-    <script src="../admin/plugins/topojson/topojson.min.js"></script>
-    <script src="../admin//plugins/datamaps/datamaps.world.min.js"></script>
+    <script src="{{ URL::asset('admin/plugins/d3v3/index.js') }}"></script>
+    <script src="{{ URL::asset('admin/plugins/topojson/topojson.min.js') }}"></script>
+    <script src="{{ URL::asset('admin//plugins/datamaps/datamaps.world.min.js') }}"></script>
     <!-- Morrisjs -->
-    <script src="../admin/plugins/raphael/raphael.min.js"></script>
-    <script src="../admin/plugins/morris/morris.min.js"></script>
+    <script src="{{ URL::asset('admin/plugins/raphael/raphael.min.js') }}"></script>
+    <script src="{{ URL::asset('admin/plugins/morris/morris.min.js') }}"></script>
     <!-- Pignose Calender -->
-    <script src="../admin/./plugins/moment/moment.min.js"></script>
-    <script src="./plugins/pg-calendar/js/pignose.calendar.min.js"></script>
+    <script src="{{ URL::asset('admin/./plugins/moment/moment.min.js') }}"></script>
+    <script src="{{ URL::asset('plugins/pg-calendar/js/pignose.calendar.min.js') }}"></script>
     <!-- ChartistJS -->
-    <script src="../admin/plugins/chartist/js/chartist.min.js"></script>
-    <script src="../admin/plugins/chartist-plugin-tooltips/js/chartist-plugin-tooltip.min.js"></script>
+    <script src="{{ URL::asset('admin/plugins/chartist/js/chartist.min.js') }}"></script>
+    <script src="{{ URL::asset('admin/plugins/chartist-plugin-tooltips/js/chartist-plugin-tooltip.min.js') }}"></script>
 
 
 
-    <script src="../admin/js/dashboard/dashboard-1.js"></script>
+    <script src="{{ URL::asset('admin/js/dashboard/dashboard-1.js') }}"></script>
 
 </body>
 

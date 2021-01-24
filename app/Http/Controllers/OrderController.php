@@ -50,6 +50,26 @@ class OrderController extends Controller
 
     }
 
+    public function penjualan()
+    {
+        //
+         $order = DB::table('detailorders')
+        ->join('orders','orders.id_order', '=', 'detailorders.id_order')
+        ->join('products','products.id_produk', '=', 'detailorders.id_produk')
+        ->join('users','orders.id_user', '=', 'users.id')
+        ->where('products.id_user',Auth::id())
+        ->where('orders.status','selesai')
+
+        ->select('detailorders.*', 'products.nama_produk as nama', 'products.gambar as gambar',
+            'products.id_produk as id_produk','products.harga_produk as har','orders.status as status','orders.tujuan as tujuan',
+            'users.name as nama_pemesan')
+        ->get();
+        // dd($order);
+        return view('web.penjualan',[
+            'order' => $order]);
+
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -119,7 +139,7 @@ class OrderController extends Controller
             DB::table('carts')->where('id_session',$session_id)->delete();
             // return view(web.cart);
         
-            return redirect()->route('cart.index');
+            return redirect()->route('order.index');
         }
         
 

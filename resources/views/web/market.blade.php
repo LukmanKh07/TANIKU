@@ -1,4 +1,7 @@
 @extends('web.baseimage')
+@section('nama_toko')
+<h1 class="mb-0 bread">{{ $markets->nama_market }}</h1>
+@endsection
 @section('isi_konten')
 
     <section class="ftco-section">
@@ -10,7 +13,9 @@
     					
     				</ul>
                    <ul class="product-category">
-                        <li><h5><a href="{{ route('market.create') }}" class="active"><span><i class="ion-ios-add"></i> Tambah Product</a></h5></li>                        
+                        <li><h5><a href="{{ route('market.create') }}" class="active"><span><i class="ion-ios-add"></i> Tambah Product</a></h5></li> 
+                          <li><h5><a href="{{ route('order.order_produk') }}" class="active"><span> Orders</a></h5></li> 
+                        <li><h5><a href="{{ route('order.penjualan') }}" class="active"><span></i> Penjualaan</a></h5></li>                        
                     </ul>
                     
     			</div>
@@ -26,7 +31,7 @@
     						<h3><a href="#">{{ $produk->nama_produk }}</a></h3>
     						<div class="d-flex">
     							<div class="pricing">
-		    						<p class="price"><span>$120.00</span></p>
+		    						<p class="price"><span>{{ $produk->harga_produk }}</span></p>
 		    					</div>
 	    					</div>
     						<div class="bottom-area d-flex px-3">

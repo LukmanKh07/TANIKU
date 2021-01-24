@@ -17,10 +17,6 @@ Route::get('about', function () {
     return view('web.about');
 });
 
-Route::get('shop', function () {
-    return view('web.shop');
-});
-
 
 
 Route::get('singleproduct', function () {
@@ -36,9 +32,12 @@ Route::get('produk', function () {
 Auth::routes();
 
 Route::resource('market','ShopController');
+Route::resource('toko','MarketController');
 Route::resource('cart','KeranjangController');
 Route::resource('order','OrderController');
 Route::get('/order_produk', 'OrderController@order_produk')->name('order.order_produk');
+Route::get('/penjualan', 'OrderController@penjualan')->name('order.penjualan');
+Route::get('/shop', 'ShopController@produk')->name('shop.produk');
 
 // Route::get('market', 'ShopController@index')->name('market');
 
@@ -46,14 +45,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['middleware' => ['auth', 'is_admin']] ,function()
 {
 	Route::get('admin/home', 'HomeController@adminHome')->name('admin.admin');
-
+	Route::get('admin/penjualan', 'AdminController@penjualan')->name('admin.penjualan');
 	Route::get('admin/pengguna', 'UserController@index')->name('admin.pengguna');
 	Route::post('admin/pengguna', 'UserController@edit')->name('admin.edit');
 	Route::get('admin/produk', 'AdminController@produk')->name('admin.produk');
 	Route::get('admin/order', 'AdminController@order')->name('admin.order');
-
+	Route::resource('admin/kategori','KategoriController');
 });
-
-
-
-

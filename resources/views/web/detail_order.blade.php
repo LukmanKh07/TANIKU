@@ -24,17 +24,20 @@
 						        <th>&nbsp;</th>
 						        <th>&nbsp;</th>
 						        <th>Product name</th>
-						        <th>Price</th>
+						        
 						        <th>Quantity</th>
 						        <th>Total</th>
+						        <th>Pemesan</th>
+						        <th>Tujuan</th>
+                    			<th>Status</th>
 						      </tr>
 						    </thead>
 						    <tbody>
-						    @foreach ($carts as $cart)
+						    @foreach ($order as $order)
 						    
 						      <tr class="text-center">
 						        <td class="product-remove">
-						        	<form action="{{ route('cart.destroy',$cart->id_produk) }}" method="POST">
+						        	<form action="{{ route('order.destroy',$order->id_produk) }}" method="POST">
 
 						        	
 						        	@csrf
@@ -42,35 +45,36 @@
                         			<button type="submit" class="btn "><span class="ion-ios-close"></span></button>
 						        	</form>
 						        </td>
-						        <td class="image-prod"><img class="img" src="{{ $cart->gambar }}"></td>
+						        <td class="image-prod"><div class="img" style="background-image:url(images/product-3.jpg);"></div></td>
 						        
 						        <td class="product-name">
-						        	<h3>{{ $cart->nama }}</h3>
+						        	<h3>{{ $order->nama }}</h3>
 						        	<p>Far far away, behind the word mountains, far from the countries</p>
 						        </td>
 						        
-						        <td class="price">{{ $cart->har }}</td>
+						       
 						        
 						        <td class="quantity">
-						        	<form action="{{ route('cart.update',$cart->id_produk) }}" method="POST">
-                					 @csrf
-                					 @method('PUT')
-						        	<div class="input-group mb-3">
-						        		
-					            		<input type="hidden" name="id" value="{{ $cart->id_produk }}">
-					             	<input type="text" id="quantity" name="jumlah" class="form-control input-number" value="{{ $cart->jumlah }}" min="1" max="100">
-					             	<span class="input-group-btn ml-2">
-					             
-					                 <button type="submit" class="btn btn-primary">Edit</button>
-					             	</span>
-					          	</div>
+						        	{{ $order->jumlah }}
 					          
 					          </td>
 						        
 						        <td class="total">
 
-						        	<input type="hidden" name="harga" value="{{ $cart->harga }}">{{ $cart->harga }}
+						        	{{ $order->harga }}
 						        </td>
+						        <td class="total">
+
+						        	{{ $order->nama_pemesan }}
+						        </td>
+						        <td class="total">
+
+						        	{{ $order->tujuan }}
+						        </td>
+                    <td>
+                    	<!-- <a class="btn btn-success" href="{{ route('order.edit',$order->id_order) }}"><h6>{{ $order->status }}</h6></a> -->
+                    	<a class="btn btn-success" href="{{ route('order.edit',$order->id_order) }}"><h6>Detail</h6></a>
+                    </td>
 						        </form>
 						      </tr><!-- END TR-->
 						      @endforeach
@@ -79,39 +83,7 @@
 					  </div>
     			</div>
     		</div>
-    		<div class="row">
-    			<div class="col-lg-4 mt-5 cart-wrap ftco-animate">
-    				<div class="cart-total mb-3">
-    					
-    					<p>Enter your address</p>
-  				<form action="{{ route('order.store') }}" method="POST" enctype="multipart/form-data">
-                 @csrf
-	              <div class="form-group">
-	              	<label for="">Address</label>
-	                <input type="text" name="alamat" class="form-control text-left px-3" placeholder="">
-	              </div>
-	              
-	            
-    				</div>
-    				
-    			</div>
-    			
-    			<div class="col-lg-4 mt-5 cart-wrap ftco-animate">
-    				<div class="cart-total mb-3">
-    					<h3>Cart Totals</h3>
-    					
-    					<hr>
-    					<p class="d-flex total-price">
-    						<span>Total</span>
-    						<span> {{$lah}}</span>
-    						<input type="hidden" name="tal" class="form-control text-left px-3" value="{{$lah}}" placeholder="">
-    					</p>
-    				</div>
-    				<p><a><button type="submit" class="btn btn-primary py-3 px-4">Order</button></a></p>
-    				
-    				</form>
-    			</div>
-    		</div>
+    		
 			</div>
 		</section>
 

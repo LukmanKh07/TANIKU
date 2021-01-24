@@ -138,7 +138,7 @@
     			@foreach ($products as $produk)
     			<div class="col-md-6 col-lg-3 ftco-animate">
     				<div class="product">
-    					<a href="#" class="img-prod"><img class="img-fluid" src="images/product-1.jpg" alt="Colorlib Template">
+    					<a href="#" class="img-prod"><img class="img-fluid" src="{{ $produk->gambar }}" alt="Colorlib Template">
     						
     						<div class="overlay"></div>
     					</a>
@@ -146,12 +146,12 @@
     						<h3><a href="#">{{ $produk->nama_produk }}</a></h3>
     						<div class="d-flex">
     							<div class="pricing">
-		    						<p class="price"><span class="price-sale">$80.00</span></p>
+		    						<p class="price"><span class="price-sale">{{ $produk->harga_produk }}</span></p>
 		    					</div>
 	    					</div>
 	    					<div class="bottom-area d-flex px-3">
 	    						<div class="m-auto d-flex">
-	    							<a href="#" class="add-to-cart d-flex justify-content-center align-items-center text-center">
+	    							<a href="{{ route('market.show',$produk->id_produk) }}" class="add-to-cart d-flex justify-content-center align-items-center text-center">
 	    								<span><i class="ion-ios-menu"></i></span>
 	    							</a>
 	    							<!-- <a  class="buy-now d-flex justify-content-center align-items-center mx-1" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
@@ -161,7 +161,7 @@
 										@csrf
 										<input type="hidden" name="id" value="{{ $produk->id_produk }}">
 										<button type="submit" class="btn">
-	    								<span><i class="ion-ios-cart" style="color: white"></i></span>
+	    								<a class="buy-now d-flex justify-content-center align-items-center mx-1"><span><i class="ion-ios-cart"></i></span></a></i></span>
 	    							</button>
                 
 									</form>

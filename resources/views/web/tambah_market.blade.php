@@ -1,4 +1,4 @@
-@extends('web.baseimage')
+@extends('web.image_market')
 @section('isi_konten')
 
     <section class="ftco-section">
@@ -6,57 +6,44 @@
     		<div class="row justify-content-center">
     			<div class="col-md-10 mb-5 text-center">
     				<ul class="product-category">
-    					<li><h3><a href="" > ADD PRODUCTS</a></h3></li>
+    					<li><h3><a href="" > CREATE MARKETS</a></h3></li>
     					
-    				</ul>                   
+    				</ul>
+                   
                     
     			</div>
     		</div>
             <div class="row">
-    		
-    			    <form action="{{ route('market.store') }}" method="POST" enctype="multipart/form-data">
+    	
+              <form action="{{ route('toko.store') }}" method="POST" enctype="multipart/form-data">
                  @csrf
                 
                 <div class="mb-3">
-                  <label for="exampleInputEmail1" class="form-label">Produk</label>
-                  <input type="text" name="produk" class="form-control">
+                  <label for="exampleInputEmail1" class="form-label">Nama Toko</label>
+                  <input type="text" name="market" class="form-control">
                   
                 </div>
-                <div class="mb-6">
-                  <label for="" class="form-label">Kategori</label>
-                  <select class="form-control" name="kategori">
-                   @foreach ($kategori as $kategori)
-                    <option value="{{ $kategori->id }}"> {{ $kategori->kategori }}</option>
-                    @endforeach
-                  </select>
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Kontak</label>
+                  <input type="text" name="kontak" class="form-control">
+                  
                 </div>
                 <div class="mb-3">
-                  <label for="" class="form-label">Gambar</label>
-                  <input type="file" name="gambar" class="form-control">
+                  <label for="exampleInputEmail1" class="form-label">Alamat</label>
+                  <input type="text" name="alamat" class="form-control">
+                  
                 </div>
-                <div class="mb-3">
-                  <label for="" class="form-label">Harga</label>
-                  <input type="text" name="harga" class="form-control">
-                </div>
-                <div class="mb-6">
-                  <label for="" class="form-label">Stock</label>
-                  <input type="text" name="stock" class="form-control">
-                </div>
-                <div class="mb-6">
-                    <label>Deskripsi</label>
-                    <textarea  class="form-control" name="deskripsi"  rows="5"></textarea>
-                </div>
+                
 
                 
                 <div class="mb-3 form-check">
                   
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
-              </form>           
+              </form>
     			
-    		    </div>
+    		</div>
     		
-        </div>
     	</div>
     </section>
 

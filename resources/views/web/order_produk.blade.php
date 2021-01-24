@@ -45,7 +45,7 @@
                         			<button type="submit" class="btn "><span class="ion-ios-close"></span></button>
 						        	</form>
 						        </td>
-						        <td class="image-prod"><div class="img" style="background-image:url(images/product-3.jpg);"></div></td>
+						        <td class="image-prod"><img class="img" src="{{ $order->gambar }}"></td>
 						        
 						        <td class="product-name">
 						        	<h3>{{ $order->nama }}</h3>
@@ -73,7 +73,8 @@
 						        </td>
                     <td>
                     	<!-- <a class="btn btn-success" href="{{ route('order.edit',$order->id_order) }}"><h6>{{ $order->status }}</h6></a> -->
-                    	<a class="btn btn-success" href="{{ route('order.edit',$order->id_order) }}"><h6>Detail</h6></a>
+                    	<a class="btn btn-success" href="{{ route('order.edit',$order->id_order) }}"><h6>{{ $order->status }}</h6></a>
+                    	<a class="btn btn-danger" href="{{ route('order.edit',$order->id_order) }}"><h6>Cancel</h6></a>
                     </td>
 						        </form>
 						      </tr><!-- END TR-->

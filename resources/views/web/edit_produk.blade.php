@@ -22,6 +22,16 @@
                   <input type="text" name="produk" class="form-control" value="{{ $products->nama_produk }}">
                   
                 </div>
+                 <div class="col-md-6">
+                    <label>Kategori Produk</label>
+
+                    <select class="form-control" name="kategori">
+                      @foreach ($kategori as $kategori)
+                      <option value="{{ $kategori->id }}">{{ $kategori->kategori }}</option>
+                      @endforeach
+                      
+                    </select>
+                </div>
                 <div class="mb-3">
                   <label for="" class="form-label">Gambar</label>
                   <input type="file" name="gambar" class="form-control" >
@@ -34,6 +44,10 @@
                 <div class="mb-3">
                   <label for="" class="form-label">Stock</label>
                   <input type="text" name="stock" class="form-control" value="{{ $products->stok }}">
+                </div>
+                <div class="mb-3">
+                    <label>Deskripsi</label>
+                    <textarea  class="form-control" name="deskripsi" cols="30" rows="5">{{ $products->deskripsi }}</textarea>
                 </div>
                 <div class="mb-3 form-check">
                   

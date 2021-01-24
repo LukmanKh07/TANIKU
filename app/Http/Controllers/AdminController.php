@@ -60,6 +60,24 @@ class AdminController extends Controller
             'order' => $order]);
     }
 
+    public function penjualan()
+    {
+        //
+         
+        $jual = DB::table('detailorders')
+        ->join('orders','orders.id_order', '=', 'detailorders.id_order')
+        ->join('products','products.id_produk', '=', 'detailorders.id_produk')
+        ->where('orders.status','selesai')
+        ->select('detailorders.*', 'products.nama_produk as nama', 'products.gambar as gambar',
+            'products.id_produk as id_produk','orders.total as tot','orders.status as tus','orders.id_order as id_order',
+            'orders.tujuan as alamat')
+        ->get();
+
+        return view('admin.penjualan',[
+            'jual' => $jual]);
+
+    }
+
     /**
      * Show the form for creating a new resource.
      *

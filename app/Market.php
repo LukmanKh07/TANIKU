@@ -10,7 +10,7 @@ class Market extends Model
     protected $table = 'markets';
 
     protected $fillable = [
-        'nama_market', 'alamat_market', 'kontak_market'
+        'nama_market', 'alamat_market', 'kontak_market','created_at','updated_at'
     ];
 
 }

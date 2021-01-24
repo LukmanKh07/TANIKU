@@ -31,16 +31,37 @@ class ShopController extends Controller
         // ->where('markets.id_user' , Auth::id())
         // ->first();
 
+        $jumlah = DB::table('markets')->where('id_user', Auth::id())->count('id_market');
+        if ($jumlah == 0) {
+            # code...
+            return view('web.tambah_market');
+        }
         $market = DB::table('markets')->where('id_user', Auth::id())->first();
         $produk = DB::table('products')
         ->join('markets','markets.id_market', '=', 'products.id_market')
         ->where('products.id_user',Auth::id())
-        ->get();
+        ->get(); 
 
         return view('web.market', [
             'markets' => $market,
             'products' => $produk]);
     }
+
+    public function produk()
+    {
+        //
+        
+
+        $produk = DB::table('products')
+        ->join('markets','markets.id_market', '=', 'products.id_market')
+        ->where('products.id_user','!=',Auth::id())
+        ->get();
+
+        return view('web.shop', [
+            'products' => $produk]);
+    }
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -50,7 +71,8 @@ class ShopController extends Controller
     public function create()
     {
         //
-        return view('web.tambah');
+        $kategori =  DB::table('categories')->get();
+        return view('web.tambah',['kategori' => $kategori]);
     }
 
     /**
@@ -66,6 +88,8 @@ class ShopController extends Controller
         $request->validate([
             'produk' => 'required',            
             'harga' => 'required',
+            'kategori' =>'required',
+            'deskripsi' =>'required',
             'stock' => 'required',
             'gambar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',            
             
@@ -110,10 +134,12 @@ class ShopController extends Controller
     public function show($id)
     {
         //
+        $market = DB::table('markets')->where('id_user', Auth::id())->first();
         $produk = DB::table('products')->where('id_produk',$id)->first();
         
          // dd($produk);
          return view('web.detail_produk', [
+            'markets' => $market,
             'products' => $produk]);
         // return view('web.detail_produk',compact('product'));
     }
@@ -127,11 +153,12 @@ class ShopController extends Controller
     public function edit($id)
     {
         //
+        $kategori =  DB::table('categories')->get();
         $produk = DB::table('products')->where('id_produk',$id)->first();
         
          // dd($produk);
          return view('web.edit_produk', [
-            'products' => $produk]);
+            'products' => $produk],['kategori' => $kategori]);
 
     }
 
@@ -149,6 +176,8 @@ class ShopController extends Controller
         $request->validate([
             'produk' => 'required',            
             'harga' => 'required',
+            'kategori' =>'required',
+            'deskripsi' =>'required',
             'stock' => 'required',
             'gambar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',            
             
@@ -162,6 +191,8 @@ class ShopController extends Controller
               ->where('id_produk', $id)
               ->update(['nama_produk' => request('produk'),
                 'harga_produk' => request('harga'),
+                'deskripsi' => request('deskripsi'),
+                'kategori' => request('kategori'),
                 'stok' => request('stock'),
                 'gambar' => $request->gambar->move('public/images', $imageName)
           ]);
